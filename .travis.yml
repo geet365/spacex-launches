@@ -3,9 +3,15 @@ language : node_js
 node_js:
   - 12
 
-install:
-  - npm install
+branches:
+  only:
+  - /.*/ # run for all the branches
 
-script:
-  - npm run lint
-  - npm test
+jobs:
+  include:
+    - stage: Install dependencies
+      script: npm install
+    - stage: Static code check
+      script: npm run lint
+    - stage: Test
+      script: npm test
