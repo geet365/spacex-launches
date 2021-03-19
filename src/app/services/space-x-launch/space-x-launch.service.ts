@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from "@angular/common/http";
+import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { forEach, toString } from 'lodash-es';
 import { Observable, throwError } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
@@ -7,6 +7,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { QueryParams, constructQueryParams } from 'src/app/helpers';
 
+export type SpaceXLaunch = Record<string, any>[];
 export type SpaceXQueryParams = { launch_success?: boolean, land_success?: boolean, launch_year?: number };
 
 @Injectable({
@@ -19,13 +20,13 @@ export class SpaceXLaunchService {
 
   constructor(private http: HttpClient) {}
 
-  private getParams(queryParams: QueryParams = {}) {
+  private getParams(queryParams: QueryParams = {}): HttpParams {
     const finalQueryParams = Object.assign({}, this.defaultQueryParams, queryParams);
 
     return constructQueryParams(finalQueryParams);
   }
 
-  private transformToCompatibleQuery(query: SpaceXQueryParams) {
+  private transformToCompatibleQuery(query: SpaceXQueryParams): QueryParams {
     const transformedQuery = {} as QueryParams;
 
     forEach(query, (queryValue, queryName) => {
@@ -37,7 +38,7 @@ export class SpaceXLaunchService {
     return transformedQuery;
   }
 
-  private handleError(error: HttpErrorResponse) {
+  private handleError(error: HttpErrorResponse): Observable<never> {
     if (error.error instanceof ErrorEvent) {
       // A client-side or network error occurred. Handle it accordingly.
       console.error('An error occurred:', error.error.message);
@@ -56,10 +57,10 @@ export class SpaceXLaunchService {
   /**
    * Queries space-x launch api with query params
    */
-  queryAll(query: SpaceXQueryParams = {}) {
+  queryAll(query: SpaceXQueryParams = {}): Observable<SpaceXLaunch> {
     const compatibleQuery = this.transformToCompatibleQuery(query);
 
-    return this.http.get<Record<string, any>[]>(this.baseUrl, { params: this.getParams(compatibleQuery) }).pipe(
+    return this.http.get<SpaceXLaunch>(this.baseUrl, { params: this.getParams(compatibleQuery) }).pipe(
       retry(3), // retry up to 3 times
       catchError(this.handleError) // handle the error
     );

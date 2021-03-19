@@ -1,0 +1,19 @@
+language : node_js
+
+node_js:
+  - 12
+
+sudo: required
+
+branches:
+  only:
+  - /.*/ # run for all the branches
+
+jobs:
+  include:
+    - stage: Install dependencies
+      script: npm install
+    - stage: Static code check
+      script: npm run lint
+    - stage: Test
+      script: npm run test:ci
