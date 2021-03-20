@@ -1,0 +1,16 @@
+<div class="launches">
+  <div class="launches__filter">
+    <app-filters-panel (filterChange)="fetchLaunches($event)"></app-filters-panel>
+  </div>
+  <div class="launches__list" [ngClass]="{'loading': isLoading}">
+    <h2 class="no-data" *ngIf="launches.length === 0">No data found</h2>
+    <app-launch-card
+      *ngFor="let launch of launches"
+      [avatarUrl]="getMissionPatchSmall(launch)"
+      [name]="launch.mission_name + ' #' + launch.flight_number"
+      [missionIds]="launch.mission_id"
+      [launchYear]="launch.launch_year"
+      [launchSuccess]="launch.launch_success"
+      [landSuccess]="getLandSuccess(launch)"></app-launch-card>
+  </div>
+</div>

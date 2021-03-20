@@ -1,0 +1,6 @@
+<section class="filter-group">
+  <h3 class="filter-group__label">{{label}}</h3>
+  <div class="filter-group__buttons">
+    <app-filter-button *ngFor="let option of options" (filterClick)="toggleFilter(option)" [isActive]="selectedOption === option">{{option}}</app-filter-button>
+  </div>
+</section>

@@ -1,0 +1,13 @@
+<div class="launch-card">
+  <!-- launch avatar -->
+  <figure class="launch-card__avatar">
+    <app-img-lazy [alt]="name" [image]="avatarUrl"></app-img-lazy>
+  </figure>
+  <!-- launch name -->
+  <p class="launch-card__name">{{name}}</p>
+  <!-- additional details -->
+  <app-launch-card-item-detail label="Mission Ids" [value]="missionIds"></app-launch-card-item-detail>
+  <app-launch-card-item-detail label="Launch Year" [value]="launchYear"></app-launch-card-item-detail>
+  <app-launch-card-item-detail label="Successful Launch" [value]="launchSuccess"></app-launch-card-item-detail>
+  <app-launch-card-item-detail label="Successful Landing" [value]="landSuccess"></app-launch-card-item-detail>
+</div>

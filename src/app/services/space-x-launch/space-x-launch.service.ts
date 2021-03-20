@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams } from '@angular/common/http';
 import { forEach, toString } from 'lodash-es';
-import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
+import { Observable, throwError, timer } from 'rxjs';
+import { catchError, retry, debounce, distinctUntilChanged, debounceTime } from 'rxjs/operators';
 
 import { environment } from 'src/environments/environment';
 import { QueryParams, constructQueryParams } from 'src/app/helpers';
 
-export type SpaceXLaunch = Record<string, any>[];
-export type SpaceXQueryParams = { launch_success?: boolean, land_success?: boolean, launch_year?: number };
+export type SpaceXLaunch = Record<string, any>;
+export type SpaceXQueryParams = { launch_success?: boolean, land_success?: boolean, launch_year?: string };
 
 @Injectable({
   providedIn: 'root',
@@ -57,10 +57,12 @@ export class SpaceXLaunchService {
   /**
    * Queries space-x launch api with query params
    */
-  queryAll(query: SpaceXQueryParams = {}): Observable<SpaceXLaunch> {
+  queryAll(query: SpaceXQueryParams = {}): Observable<SpaceXLaunch[]> {
     const compatibleQuery = this.transformToCompatibleQuery(query);
 
-    return this.http.get<SpaceXLaunch>(this.baseUrl, { params: this.getParams(compatibleQuery) }).pipe(
+    return this.http.get<SpaceXLaunch[]>(this.baseUrl, { params: this.getParams(compatibleQuery) }).pipe(
+      debounceTime(500),
+      distinctUntilChanged(),
       retry(3), // retry up to 3 times
       catchError(this.handleError) // handle the error
     );

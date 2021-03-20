@@ -1,0 +1,55 @@
+@import './variables';
+
+.launches {
+  display: flex;
+  flex-wrap: wrap;
+
+  &__filter {
+    flex: 0 1 100%;
+  }
+
+  &__list {
+    display: flex;
+    flex-wrap: wrap;
+    flex: 0 1 100%;
+    position: relative;
+
+    &.loading:after {
+      background-color: rgba($color: #000, $alpha: .5);
+      border-radius: $border-radius;
+      bottom: 0;
+      content: '';
+      left: 0;
+      position: absolute;
+      right: 0;
+      top: 0;
+    }
+
+    .no-data {
+      width: 100%;
+      text-align: center;
+    }
+  }
+
+  @media only screen and (min-width: 700px) {
+    flex-wrap: nowrap;
+
+    &__filter {
+      flex: 0 1 25%;
+    }
+
+    &__list {
+      flex: 0 1 75%;
+      padding-left: 10px;
+
+      &.loading:after {
+        left: 10px;
+        top: 10px;
+      }
+
+      .no-data {
+        margin-top: 10px;
+      }
+    }
+  }
+}

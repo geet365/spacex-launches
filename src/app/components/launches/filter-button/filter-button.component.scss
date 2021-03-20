@@ -1,0 +1,21 @@
+@import '../variables';
+
+.filter-btn {
+  outline: none;
+  border: 0;
+  border-radius: 4px;
+  background-color: #bddc8d;
+  padding: 5px 10px;
+  text-align: center;
+  cursor: pointer;
+  min-width: 80px;
+  font-size: 18px;
+
+  &:hover {
+    box-shadow: $box-shadow;
+  }
+
+  &.active {
+    background-color: #7cba01;
+  }
+}
