@@ -1,5 +1,5 @@
 <div class="launch-card-item-detail">
-  <p class="launch-card-item-detail__label">{{label}}</p>
+  <p class="launch-card-item-detail__label">{{label}}: &nbsp;</p>
   <p class="launch-card-item-detail__value" *ngIf="!isList();else elseCase">{{getValue()}}</p>
   <ng-template #elseCase>
     <ul class="launch-card-item-detail__values">

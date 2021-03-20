@@ -9,7 +9,7 @@ import { map, range, toString } from 'lodash-es';
   styleUrls: ['./filters-panel.component.scss']
 })
 export class FiltersPanelComponent implements OnInit {
-  @Output() onFilterChange = new EventEmitter<any>();
+  @Output() filterChange = new EventEmitter<any>();
 
   launchYearOptions: string[] = map(range(2006, (new Date()).getFullYear() + 1), toString);
 
@@ -34,16 +34,16 @@ export class FiltersPanelComponent implements OnInit {
         this.appliedFilters.launch_year = params.launch_year;
       }
 
-      this.onFilterChange.emit(this.appliedFilters);
+      this.filterChange.emit(this.appliedFilters);
     });
   }
 
-  updateYearFilter(event: string | undefined) {
+  updateYearFilter(event: string | undefined): void {
     this.updateFilters({ ...this.appliedFilters, launch_year: event });
   }
 
-  updateLaunchFilter(event: string | undefined) {
-    let queryValue = undefined;
+  updateLaunchFilter(event: string | undefined): void {
+    let queryValue;
     if (event === 'true') {
       queryValue = true;
     } else if (event === 'false') {
@@ -53,8 +53,8 @@ export class FiltersPanelComponent implements OnInit {
     this.updateFilters({ ...this.appliedFilters, launch_success: queryValue });
   }
 
-  updateLandFilter(event: string | undefined) {
-    let queryValue = undefined;
+  updateLandFilter(event: string | undefined): void {
+    let queryValue;
     if (event === 'true') {
       queryValue = true;
     } else if (event === 'false') {
@@ -64,12 +64,12 @@ export class FiltersPanelComponent implements OnInit {
     this.updateFilters({ ...this.appliedFilters, land_success: queryValue });
   }
 
-  updateFilters(query: SpaceXQueryParams) {
+  updateFilters(query: SpaceXQueryParams): void {
     this.appliedFilters = query;
     this.router.navigate([], { relativeTo: this.activatedRoute, queryParams: this.appliedFilters, queryParamsHandling: 'merge' });
   }
 
-  toString(value: any) {
+  toString(value: any): string {
     return toString(value);
   }
 

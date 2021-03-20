@@ -1,7 +1,21 @@
 .launch-card-item-detail {
-  padding: 20px;
+  margin: 14px 0;
 
   &__label {
+    display: inline-block;
     font-weight: bold;
+    font-size: inherit;
+  }
+
+  &__value {
+    display: inline-block;
+    color: #474f98;
+    font-size: inherit;
+  }
+
+  &__values {
+    margin-left: 20px;
+    color: #474f98;
+    font-size: inherit;
   }
 }

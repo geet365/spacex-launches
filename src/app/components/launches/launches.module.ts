@@ -9,7 +9,14 @@ import { FilterGroupComponent } from './filter-group/filter-group.component';
 import { FilterButtonComponent } from './filter-button/filter-button.component';
 
 @NgModule({
-  declarations: [LaunchesComponent, LaunchCardComponent, LaunchCardItemDetailComponent, FiltersPanelComponent, FilterGroupComponent, FilterButtonComponent],
+  declarations: [
+    LaunchesComponent,
+    LaunchCardComponent,
+    LaunchCardItemDetailComponent,
+    FiltersPanelComponent,
+    FilterGroupComponent,
+    FilterButtonComponent,
+  ],
   imports: [
     CommonModule,
   ],

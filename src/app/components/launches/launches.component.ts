@@ -29,7 +29,7 @@ export class LaunchesComponent implements OnInit {
     return get(launch, 'links.mission_patch_small', null);
   }
 
-  fetchLaunches(query: SpaceXQueryParams = {}) {
+  fetchLaunches(query: SpaceXQueryParams = {}): void {
     this.isLoading = true;
     // Cancel previous request
     if (this.prevFetchReq) {

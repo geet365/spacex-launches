@@ -5,15 +5,13 @@
   flex-wrap: wrap;
 
   &__filter {
-    flex: 100%;
-    flex-shrink: 0;
+    flex: 0 1 100%;
   }
 
   &__list {
     display: flex;
     flex-wrap: wrap;
-    flex: 100%;
-    padding-left: 5px;
+    flex: 0 1 100%;
     position: relative;
 
     &.loading:after {
@@ -21,25 +19,37 @@
       border-radius: $border-radius;
       bottom: 0;
       content: '';
-      left: 10px;
+      left: 0;
       position: absolute;
       right: 0;
-      top: 10px;
+      top: 0;
     }
 
-    h2 {
+    .no-data {
       width: 100%;
       text-align: center;
     }
   }
 
   @media only screen and (min-width: 700px) {
+    flex-wrap: nowrap;
+
     &__filter {
-      flex: 25%;
+      flex: 0 1 25%;
     }
 
     &__list {
-      flex: 75%;
+      flex: 0 1 75%;
+      padding-left: 10px;
+
+      &.loading:after {
+        left: 10px;
+        top: 10px;
+      }
+
+      .no-data {
+        margin-top: 10px;
+      }
     }
   }
 }

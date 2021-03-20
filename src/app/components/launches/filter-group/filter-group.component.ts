@@ -6,26 +6,26 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./filter-group.component.scss']
 })
 export class FilterGroupComponent implements OnInit {
-  @Input() label: string = '';
+  @Input() label = '';
 
   @Input() options: string[] = [];
 
   @Input() selectedOption?: string = undefined;
 
-  @Output() onFilter = new EventEmitter<string | undefined>();
+  @Output() filter = new EventEmitter<string | undefined>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  toggleFilter(option: string) {
+  toggleFilter(option: string): void {
     if (this.selectedOption === option) {
       this.selectedOption = undefined;
     } else {
       this.selectedOption = option;
     }
-    this.onFilter.emit(this.selectedOption);
+    this.filter.emit(this.selectedOption);
   }
 
 }

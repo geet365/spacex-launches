@@ -1,9 +1,9 @@
 <div class="launches">
   <div class="launches__filter">
-    <app-filters-panel (onFilterChange)="fetchLaunches($event)"></app-filters-panel>
+    <app-filters-panel (filterChange)="fetchLaunches($event)"></app-filters-panel>
   </div>
   <div class="launches__list" [ngClass]="{'loading': isLoading}">
-    <h2 *ngIf="launches.length === 0">No data found</h2>
+    <h2 class="no-data" *ngIf="launches.length === 0">No data found</h2>
     <app-launch-card
       *ngFor="let launch of launches"
       [avatarUrl]="getMissionPatchSmall(launch)"

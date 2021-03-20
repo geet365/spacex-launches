@@ -8,15 +8,15 @@ import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 export class FilterButtonComponent implements OnInit {
   @Input() isActive = false;
 
-  @Output() onFilterClick = new EventEmitter<MouseEvent>();
+  @Output() filterClick = new EventEmitter<MouseEvent>();
 
   constructor() { }
 
   ngOnInit(): void {
   }
 
-  onClickHandler(event: MouseEvent) {
-    this.onFilterClick.emit(event);
+  onClickHandler(event: MouseEvent): void {
+    this.filterClick.emit(event);
   }
 
 }
