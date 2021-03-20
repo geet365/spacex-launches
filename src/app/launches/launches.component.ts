@@ -71,7 +71,7 @@ export class LaunchesComponent implements OnInit, OnDestroy, AfterViewInit {
     const nextLastLaunchIndex = this.lastLaunchIndex + PAGE_SIZE;
 
     if (nextLastLaunchIndex >= this.launches.length) {
-      this.lastLaunchIndex = this.launches.length || PAGE_SIZE;
+      this.lastLaunchIndex = this.launches.length < PAGE_SIZE ? PAGE_SIZE : this.launches.length;
     } else {
       this.lastLaunchIndex = nextLastLaunchIndex;
     }
