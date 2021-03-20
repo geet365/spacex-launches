@@ -1,0 +1,6 @@
+<div class="filters-panel">
+  <h2>Filters</h2>
+  <app-filter-group label="Launch Year" [options]="launchYearOptions" (onFilter)="updateYearFilter($event)" [selectedOption]="appliedFilters.launch_year"></app-filter-group>
+  <app-filter-group label="Successful Launch" [options]="successLaunchOptions" (onFilter)="updateLaunchFilter($event)" [selectedOption]="toString(appliedFilters.launch_success)"></app-filter-group>
+  <app-filter-group label="Successful Landing" [options]="successLandOptions" (onFilter)="updateLandFilter($event)" [selectedOption]="toString(appliedFilters.land_success)"></app-filter-group>
+</div>

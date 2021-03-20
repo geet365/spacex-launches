@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { SpaceXLaunchService, SpaceXLaunch } from 'src/app/services/space-x-launch';
+import { SpaceXLaunchService, SpaceXLaunch, SpaceXQueryParams } from 'src/app/services/space-x-launch';
 import { get } from 'lodash-es';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-launches',
@@ -8,14 +9,16 @@ import { get } from 'lodash-es';
   styleUrls: ['./launches.component.scss'],
 })
 export class LaunchesComponent implements OnInit {
+  isLoading = false;
+
   launches: SpaceXLaunch[] = [];
+
+  prevFetchReq?: Subscription;
 
   constructor(private spaceXLaunchService: SpaceXLaunchService) {}
 
   ngOnInit(): void {
-    this.spaceXLaunchService.queryAll().subscribe((launches) => {
-      this.launches = launches;
-    });
+    this.fetchLaunches();
   }
 
   getLandSuccess(launch: SpaceXLaunch): null | boolean {
@@ -24,5 +27,17 @@ export class LaunchesComponent implements OnInit {
 
   getMissionPatchSmall(launch: SpaceXLaunch): string | null {
     return get(launch, 'links.mission_patch_small', null);
+  }
+
+  fetchLaunches(query: SpaceXQueryParams = {}) {
+    this.isLoading = true;
+    // Cancel previous request
+    if (this.prevFetchReq) {
+      this.prevFetchReq.unsubscribe();
+    }
+    this.prevFetchReq = this.spaceXLaunchService.queryAll(query).subscribe((launches) => {
+      this.launches = launches;
+      this.isLoading = false;
+    });
   }
 }
