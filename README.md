@@ -4,6 +4,8 @@
 
 This project can be used to view SpaceX launches.
 
+[Live now](https://spacex-launches-2.herokuapp.com/)
+
 ## Tech stack
 
 - angular
