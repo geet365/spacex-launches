@@ -1,17 +1,19 @@
 {
   "name": "spacex-launches",
   "version": "0.0.0",
+  "engines": {
+    "node": "12.x"
+  },
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
-    "build": "ng build",
     "test": "ng test",
     "test:ci": "ng test --watch=false --browsers=ChromeHeadless",
     "lint": "ng lint",
     "e2e": "ng e2e",
     "dev:ssr": "ng run spacex-launches:serve-ssr",
     "serve:ssr": "node dist/spacex-launches/server/main.js",
-    "build:ssr": "ng build --prod && ng run spacex-launches:server:production",
+    "build": "ng build --prod && ng run spacex-launches:server:production",
     "prerender": "ng run spacex-launches:prerender",
     "format:fix": "pretty-quick --staged",
     "format:check": "prettier --config ./.prettierrc --list-different \"src/{app,environments,assets}/**/*{.ts,.js,.json,.css,.scss}\"",
