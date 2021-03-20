@@ -61,8 +61,6 @@ export class SpaceXLaunchService {
     const compatibleQuery = this.transformToCompatibleQuery(query);
 
     return this.http.get<SpaceXLaunch[]>(this.baseUrl, { params: this.getParams(compatibleQuery) }).pipe(
-      debounceTime(500),
-      distinctUntilChanged(),
       retry(3), // retry up to 3 times
       catchError(this.handleError) // handle the error
     );
