@@ -1,0 +1,7 @@
+<div class="launch-card-item-detail">
+  <p class="launch-card-item-detail__label">{{label}}</p>
+  <p class="launch-card-item-detail__value" *ngIf="!isList()">{{value || 'NA'}}</p>
+  <ul class="launch-card-item-detail__values" *ngIf="isList()">
+    <!-- <li *ngFor="let val of value">{{val}}</li> -->
+  </ul>
+</div>

@@ -7,7 +7,7 @@ import { catchError, retry } from 'rxjs/operators';
 import { environment } from 'src/environments/environment';
 import { QueryParams, constructQueryParams } from 'src/app/helpers';
 
-export type SpaceXLaunch = Record<string, any>[];
+export type SpaceXLaunch = Record<string, any>;
 export type SpaceXQueryParams = { launch_success?: boolean, land_success?: boolean, launch_year?: number };
 
 @Injectable({
@@ -57,10 +57,10 @@ export class SpaceXLaunchService {
   /**
    * Queries space-x launch api with query params
    */
-  queryAll(query: SpaceXQueryParams = {}): Observable<SpaceXLaunch> {
+  queryAll(query: SpaceXQueryParams = {}): Observable<SpaceXLaunch[]> {
     const compatibleQuery = this.transformToCompatibleQuery(query);
 
-    return this.http.get<SpaceXLaunch>(this.baseUrl, { params: this.getParams(compatibleQuery) }).pipe(
+    return this.http.get<SpaceXLaunch[]>(this.baseUrl, { params: this.getParams(compatibleQuery) }).pipe(
       retry(3), // retry up to 3 times
       catchError(this.handleError) // handle the error
     );
