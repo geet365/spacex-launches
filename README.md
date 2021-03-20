@@ -1,27 +1,57 @@
-# SpacexLaunches
+# Spacex Launch Programs 
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
+[![Build Status](https://travis-ci.org/geet365/spacex-launches.svg\?branch\=master\&status\=passed)](https://travis-ci.org/github/geet365/spacex-launches)
 
-## Development server
+This project can be used to view SpaceX launches.
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+[Live now](https://spacex-launches-2.herokuapp.com/)
 
-## Code scaffolding
+## Tech stack
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+- angular
+- express (for SSR)
+- typescript
 
-## Build
+The application is deployed on **Heroku**, and **Travis** is used for CI. It has been configured to automatically trigger a build whenever something is pushed to the `master` branch.
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+## Highlights
+- Application is server-side rendered.
+- Fully responsive to covers all range of device.
+- Uses lazy loading to defer loading off-screen images which results in reduced initial page load time
+- Used best practises and performation optimizations, resulting in a high lighthouse score
 
-## Running unit tests
+**Using Lighthouse**
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+![lighthouse score](/screenshots/lighthouse.png?raw=true)
 
-## Running end-to-end tests
+**Using [web.dev](https://web.dev/measure)**
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+![lighthouse score](/screenshots/web.dev.png?raw=true)
 
-## Further help
+**Screenshots**
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+![mobile-view](/screenshots/mobile-view.png?raw=true)
+
+![mobile-view-2](/screenshots/mobile-view-2.png?raw=true)
+
+![tablet-view](/screenshots/tablet-view.png?raw=true)
+
+![app](/screenshots/app.png?raw=true)
+
+![with-filter-applied](/screenshots/with-filter-applied.png?raw=true)
+
+## Available Scripts
+
+To run the project on local machine use following commands:
+
+```sh
+npm run dev:ssr # starts SSR server
+
+npm start # starts SPA server
+
+npm run format:check # runs prettier to check code format issues
+
+npm run format:fix # runs prettier to fix code format issues
+```
+
+Following this, open [http://localhost:4200](http://localhost:4200) to view it in the browser.

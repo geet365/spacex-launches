@@ -15,9 +15,8 @@
     "serve:ssr": "node dist/spacex-launches/server/main.js",
     "build": "ng build --prod && ng run spacex-launches:server:production",
     "prerender": "ng run spacex-launches:prerender",
-    "format:fix": "pretty-quick --staged",
-    "format:check": "prettier --config ./.prettierrc --list-different \"src/{app,environments,assets}/**/*{.ts,.js,.json,.css,.scss}\"",
-    "precommit": "run-s format:fix lint"
+    "format:fix": "prettier --config ./.prettierrc --list-different \"src/{app,environments,assets}/**/*{.ts,.js,.json,.css,.scss}\"",
+    "format:check": "prettier --config ./.prettierrc --list-different \"src/{app,environments,assets}/**/*{.ts,.js,.json,.css,.scss}\""
   },
   "private": true,
   "dependencies": {

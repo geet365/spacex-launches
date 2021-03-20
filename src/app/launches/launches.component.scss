@@ -3,6 +3,7 @@
 .launches {
   display: flex;
   flex-wrap: wrap;
+  align-items: flex-start;
 
   &__filter {
     flex: 0 1 100%;
