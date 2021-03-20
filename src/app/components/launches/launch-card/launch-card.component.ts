@@ -17,8 +17,4 @@ export class LaunchCardComponent {
   @Input() launchSuccess: boolean | null = null;
 
   @Input() landSuccess: boolean | null = null;
-
-  toString(value: any) {
-    return String(value);
-  }
 }

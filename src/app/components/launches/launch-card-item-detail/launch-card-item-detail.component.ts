@@ -8,9 +8,19 @@ import { Component, Input } from '@angular/core';
 export class LaunchCardItemDetailComponent {
   @Input() label: string | null = null;
 
-  @Input() value: string | null | string[] = null;
+  @Input() value: any | any[] = null;
+
+  naPlaceholder = 'NA';
 
   isList() {
     return this.value instanceof Array;
+  }
+
+  getValue() {
+    return this.value || this.naPlaceholder;
+  }
+
+  getValues() {
+    return this.isList() && (this.value as any[]).length > 0 ? this.value as string[] : [this.naPlaceholder];
   }
 }
