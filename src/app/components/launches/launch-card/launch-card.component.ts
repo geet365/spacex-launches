@@ -1,14 +1,14 @@
 import { Component, Input, ViewEncapsulation } from '@angular/core';
 
 @Component({
-  selector: 'launch-card',
+  selector: 'app-launch-card',
   templateUrl: './launch-card.component.html',
   styleUrls: ['./launch-card.component.scss'],
 })
 export class LaunchCardComponent {
   @Input() avatarUrl: string | null = null;
 
-  @Input() name: string = '';
+  @Input() name = '';
 
   @Input() missionIds: string[] = [];
 

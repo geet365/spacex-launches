@@ -1,1 +1,1 @@
-export * from './launch-card-item-detail.component'
+export * from './launch-card-item-detail.component';

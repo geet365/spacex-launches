@@ -1,13 +1,13 @@
 <div class="launches">
   <div class="launches__filter"></div>
   <div *ngIf="launches.length > 0" class="launches__list">
-    <launch-card
+    <app-launch-card
       *ngFor="let launch of launches"
       [avatarUrl]="getMissionPatchSmall(launch)"
       [name]="launch.mission_name"
       [missionIds]="launch.mission_id"
       [launchYear]="launch.launch_year"
       [launchSuccess]="launch.launch_success"
-      [landSuccess]="getLandSuccess(launch)"></launch-card>
+      [landSuccess]="getLandSuccess(launch)"></app-launch-card>
   </div>
 </div>

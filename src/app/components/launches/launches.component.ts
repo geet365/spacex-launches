@@ -1,18 +1,18 @@
-import { Component, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { SpaceXLaunchService, SpaceXLaunch } from 'src/app/services/space-x-launch';
 import { get } from 'lodash-es';
 
 @Component({
-  selector: 'launches',
+  selector: 'app-launches',
   templateUrl: './launches.component.html',
   styleUrls: ['./launches.component.scss'],
 })
-export class LaunchesComponent {
+export class LaunchesComponent implements OnInit {
   launches: SpaceXLaunch[] = [];
 
   constructor(private spaceXLaunchService: SpaceXLaunchService) {}
 
-  ngOnInit() {
+  ngOnInit(): void {
     this.spaceXLaunchService.queryAll().subscribe((launches) => {
       this.launches = launches;
     });

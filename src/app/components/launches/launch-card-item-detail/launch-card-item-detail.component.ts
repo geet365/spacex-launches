@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'launch-card-item-detail',
+  selector: 'app-launch-card-item-detail',
   templateUrl: './launch-card-item-detail.component.html',
   styleUrls: ['./launch-card-item-detail.component.scss']
 })
@@ -12,15 +12,15 @@ export class LaunchCardItemDetailComponent {
 
   naPlaceholder = 'NA';
 
-  isList() {
+  isList(): boolean {
     return this.value instanceof Array;
   }
 
-  getValue() {
+  getValue(): any {
     return this.value || this.naPlaceholder;
   }
 
-  getValues() {
+  getValues(): string[] {
     return this.isList() && (this.value as any[]).length > 0 ? this.value as string[] : [this.naPlaceholder];
   }
 }
